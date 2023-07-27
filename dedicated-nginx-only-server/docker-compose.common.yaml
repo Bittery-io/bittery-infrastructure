@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+
+  nginx:
+    restart: unless-stopped
+    image: nginx:1.21.0
+    container_name: nginx
+    volumes:
+      - ./volumes/nginx/conf:/etc/nginx/conf.d:rw
+      - ./volumes/nginx/vhost:/etc/nginx/vhost.d
+      - ./volumes/nginx/html:/usr/share/nginx/html
+      - ./volumes/nginx/certs:/etc/nginx/certs:ro
+    networks:
+      - bittery-net
+    ports:
+      - 443:443
